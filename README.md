@@ -39,7 +39,18 @@ GET /v4/sessions/{sessionId}/players/{guildId}/queue
 
 Response:
 
-```
+```json5
+{
+  "type": "playlist",
+  "tracks": [
+    {
+      "encoded": "...",
+      "info": "{}",
+      "pluginInfo": "{}",
+      "userData": "{}"
+    }
+  ]
+}
 ```
 
 ### Get Queue Track
@@ -84,7 +95,7 @@ GET /v4/sessions/{sessionId}/players/{guildId}/history/{index}
 
 ### Update Queue
 
-> [!CAUTION]
+> [!NOTE]
 > This route will override any existing tracks in the queue.
 
 ```
@@ -102,11 +113,6 @@ Request:
     }
   ]
 }
-```
-
-Response:
-
-```
 ```
 
 ### Add Queue Track
@@ -159,7 +165,7 @@ Request:
 
 ### Move Queue Track
 
-> [!CAUTION]
+> [!NOTE]
 > This does not remove the track at the original index.
 
 ```
