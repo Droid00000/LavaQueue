@@ -44,57 +44,42 @@ Response:
 
 ### Get Queue Track
 
+Gets a track from the queue at the specified index. Response is a [track](https://lavalink.dev/api/rest#track) object.
+
 ```
 GET /v4/sessions/{sessionId}/players/{guildId}/queue/tracks/{index}
 ```
 
-Response:
-
-```
-```
-
 ## Get Next Track
+
+Gets next track in the queue. Response is a [track](https://lavalink.dev/api/rest#track) object.
 
 ```
 GET /v4/sessions/{sessionId}/players/{guildId}/queue/next
 ```
 
-Response:
-
-```
-```
-
 ## Get Previous Track
+
+Gets the previously playing track. Response is a [track](https://lavalink.dev/api/rest#track) object.
 
 ```
 GET /v4/sessions/{sessionId}/players/{guildId}/queue
 ```
 
-Response:
-
-```
-```
-
 ### Get Queue History
+
+Gets the history of this queue. Response is an array of [track](https://lavalink.dev/api/rest#track) objects.
 
 ```
 GET /v4/sessions/{sessionId}/players/{guildId}/history
 ```
 
-Response:
-
-```
-```
-
 ### Get Queue History Track
+
+Gets a track from the history at the specified index. Response is a [track](https://lavalink.dev/api/rest#track) object.
 
 ```
 GET /v4/sessions/{sessionId}/players/{guildId}/history/{index}
-```
-
-Response:
-
-```
 ```
 
 ### Update Queue
@@ -126,8 +111,10 @@ Response:
 
 ### Add Queue Track
 
+Adds a track at the specified index. Reuqest body is an [update player track](https://lavalink.dev/api/rest#update-player-track).
+
 ```
-POST /v4/sessions/{sessionId}/players/{guildId}/queue/tracks/{index}
+PUT /v4/sessions/{sessionId}/players/{guildId}/queue/tracks/{index}
 ```
 
 Response:
@@ -160,11 +147,11 @@ Response:
 
 ### Update Queue Tracks
 
-> [!IMPORTANT]
+> [!CAUTION]
 > This route will override any existing tracks in the queue.
 
 ```
-PATCH /v4/sessions/{sessionId}/players/{guildId}/queue/tracks
+PUT /v4/sessions/{sessionId}/players/{guildId}/queue/tracks
 ```
 
 Request:
@@ -186,11 +173,11 @@ Response:
 
 ### Move Queue Track
 
-> [!IMPORTANT]
+> [!CAUTION]
 > This does not remove the track at the original index.
 
 ```
-POST /v4/sessions/{sessionId}/players/{guildId}/queue/{index}/move?position=
+POST /v4/sessions/{sessionId}/players/{guildId}/queue/{index}/move?position=0
 ```
 
 Response:
@@ -206,7 +193,8 @@ DELETE /v4/sessions/{sessionId}/players/{guildId}/tracks/queue
 
 ### Delete Queue Track(s)
 
-If amount is provided, n number of elements after the index will be removed.
+> [!NOTE]
+> If amount is provided, the specified number of elements after the index will be removed.
 
 ```
 DELETE /v4/sessions/{sessionId}/players/{guildId}/queue/{index}?amount=0
