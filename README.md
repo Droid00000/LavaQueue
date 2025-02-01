@@ -52,7 +52,7 @@ GET /v4/sessions/{sessionId}/players/{guildId}/queue/tracks/{index}
 
 ## Get Next Track
 
-Gets next track in the queue. Response is a [track](https://lavalink.dev/api/rest#track) object.
+Gets the next track in the queue. Response is a [track](https://lavalink.dev/api/rest#track) object.
 
 ```
 GET /v4/sessions/{sessionId}/players/{guildId}/queue/next
@@ -84,7 +84,7 @@ GET /v4/sessions/{sessionId}/players/{guildId}/history/{index}
 
 ### Update Queue
 
-> [!IMPORTANT]
+> [!CAUTION]
 > This route will override any existing tracks in the queue.
 
 ```
@@ -117,12 +117,9 @@ Adds a track at the specified index. Reuqest body is an [update player track](ht
 PUT /v4/sessions/{sessionId}/players/{guildId}/queue/tracks/{index}
 ```
 
-Response:
-
-```
-```
-
 ### Add Queue Tracks
+
+Overrides the existing tracks in the queue. Response is the next queue [track](https://lavalink.dev/api/rest#track).
 
 ```
 POST /v4/sessions/{sessionId}/players/{guildId}/queue/tracks
@@ -140,15 +137,9 @@ Request:
 }
 ```
 
-Response:
-
-```
-```
-
 ### Update Queue Tracks
 
-> [!CAUTION]
-> This route will override any existing tracks in the queue.
+Overrides the existing tracks in the queue. Response is the next queue [track](https://lavalink.dev/api/rest#track).
 
 ```
 PUT /v4/sessions/{sessionId}/players/{guildId}/queue/tracks
@@ -166,11 +157,6 @@ Request:
 }
 ```
 
-Response:
-
-```
-```
-
 ### Move Queue Track
 
 > [!CAUTION]
@@ -178,11 +164,6 @@ Response:
 
 ```
 POST /v4/sessions/{sessionId}/players/{guildId}/queue/{index}/move?position=0
-```
-
-Response:
-
-```
 ```
 
 ### Delete Queue
@@ -194,7 +175,7 @@ DELETE /v4/sessions/{sessionId}/players/{guildId}/tracks/queue
 ### Delete Queue Track(s)
 
 > [!NOTE]
-> If amount is provided, the specified number of elements after the index will be removed.
+> Amount is optional. If provided, the specified number of elements after the index will be removed.
 
 ```
 DELETE /v4/sessions/{sessionId}/players/{guildId}/queue/{index}?amount=0
