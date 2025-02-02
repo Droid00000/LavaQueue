@@ -20,8 +20,10 @@ Replace x.y.z with the latest version number or short commit hash.
 lavalink:
   plugins:
     - dependency: "com.github.topi314.lavaqueue:lavaqueue-plugin:x.y.z"
-      snapshot: false # set to true if you want to use snapshot builds (currently required)
+      snapshot: false # set to true if you want to use snapshot builds (see below)
 ```
+
+Snapshot builds are available at https://maven.lavalink.dev/#/snapshots with the short commit hash as the version.
 
 ## Lavalink Usage
 
@@ -30,6 +32,8 @@ lavalink:
 * `normal`
 * `repeat`
 * `track`
+
+---
 
 ### Get Queue
 
@@ -41,7 +45,7 @@ Response:
 
 ```json5
 {
-  "type": "playlist",
+  "type": "normal",
   "tracks": [
     {
       "encoded": "...",
@@ -53,50 +57,11 @@ Response:
 }
 ```
 
-### Get Queue Track
-
-Gets a track from the queue at the specified index. Response is a [track](https://lavalink.dev/api/rest#track) object.
-
-```
-GET /v4/sessions/{sessionId}/players/{guildId}/queue/tracks/{index}
-```
-
-## Get Next Track
-
-Gets the next track in the queue. Response is a [track](https://lavalink.dev/api/rest#track) object.
-
-```
-GET /v4/sessions/{sessionId}/players/{guildId}/queue/next
-```
-
-## Get Previous Track
-
-Gets the previously playing track. Response is a [track](https://lavalink.dev/api/rest#track) object.
-
-```
-GET /v4/sessions/{sessionId}/players/{guildId}/queue
-```
-
-### Get Queue History
-
-Gets the history of this queue. Response is an array of [track](https://lavalink.dev/api/rest#track) objects.
-
-```
-GET /v4/sessions/{sessionId}/players/{guildId}/history
-```
-
-### Get Queue History Track
-
-Gets a track from the history at the specified index. Response is a [track](https://lavalink.dev/api/rest#track) object.
-
-```
-GET /v4/sessions/{sessionId}/players/{guildId}/history/{index}
-```
+---
 
 ### Update Queue
 
-> [!NOTE]
-> This route will override any existing tracks in the queue.
+Modifies the queue. Overrides the existing tracks if the tracks key is present.
 
 ```
 PATCH /v4/sessions/{sessionId}/players/{playerId}/queue
@@ -115,17 +80,31 @@ Request:
 }
 ```
 
-### Add Queue Track
+---
 
-Adds a track at the specified index. Reuqest body is an [update player track](https://lavalink.dev/api/rest#update-player-track).
+## Next Queue Track
+
+Gets the next track in the queue. Plays the track if the player isn't playing. Response is a [track](https://lavalink.dev/api/rest#track) object.
 
 ```
-PUT /v4/sessions/{sessionId}/players/{guildId}/queue/tracks/{index}
+GET /v4/sessions/{sessionId}/players/{guildId}/queue/next
 ```
+
+---
+
+## Previous Queue Track
+
+Gets the previously playing track. Plays the track if the player isn't playing. Response is a [track](https://lavalink.dev/api/rest#track) object.
+
+```
+GET /v4/sessions/{sessionId}/players/{guildId}/queue
+```
+
+---
 
 ### Add Queue Tracks
 
-Overrides the existing tracks in the queue. Response is the next queue [track](https://lavalink.dev/api/rest#track).
+Adds tracks to the queue. Response is the next queue [track](https://lavalink.dev/api/rest#track).
 
 ```
 POST /v4/sessions/{sessionId}/players/{guildId}/queue/tracks
@@ -142,6 +121,8 @@ Request:
   ]
 }
 ```
+
+---
 
 ### Update Queue Tracks
 
@@ -163,14 +144,7 @@ Request:
 }
 ```
 
-### Move Queue Track
-
-> [!NOTE]
-> This does not remove the track at the original index.
-
-```
-POST /v4/sessions/{sessionId}/players/{guildId}/queue/{index}/move?position=0
-```
+---
 
 ### Delete Queue
 
@@ -178,11 +152,78 @@ POST /v4/sessions/{sessionId}/players/{guildId}/queue/{index}/move?position=0
 DELETE /v4/sessions/{sessionId}/players/{guildId}/tracks/queue
 ```
 
+---
+
+### Get Queue Track
+
+Gets a track from the queue at the specified index. Response is a [track](https://lavalink.dev/api/rest#track) object.
+
+```
+GET /v4/sessions/{sessionId}/players/{guildId}/queue/tracks/{index}
+```
+
+---
+
+### Add Queue Track
+
+Adds a track at the specified index. Reuqest body is an [update player track](https://lavalink.dev/api/rest#update-player-track).
+
+```
+PUT /v4/sessions/{sessionId}/players/{guildId}/queue/tracks/{index}
+```
+
+---
+
 ### Delete Queue Track(s)
 
-> [!NOTE]
-> Amount is optional. If provided, the specified number of elements after the index will be removed.
+Deletes a track from the queue. If amount is provided, the specified number of elements after the index will be removed.
 
 ```
 DELETE /v4/sessions/{sessionId}/players/{guildId}/queue/{index}?amount=0
+```
+
+---
+
+### Move Queue Track
+
+Move a track to a different position. This does *not* remove the track at the original index.
+
+```
+POST /v4/sessions/{sessionId}/players/{guildId}/queue/{index}/move?position=0
+```
+
+---
+
+### Get Queue History
+
+Gets the history of this queue. Response is an array of [track](https://lavalink.dev/api/rest#track) objects.
+
+```
+GET /v4/sessions/{sessionId}/players/{guildId}/history
+```
+
+---
+
+### Get Queue History Track
+
+Gets a track from the history at the specified index. Response is a [track](https://lavalink.dev/api/rest#track) object.
+
+```
+GET /v4/sessions/{sessionId}/players/{guildId}/history/{index}
+```
+
+---
+
+## Events
+
+One new event has been added.
+
+### QueueEndEvent
+
+```json5
+{
+  "op": "event",
+  "type": "QueueEndEvent",
+  "guildId": "...",
+}
 ```
