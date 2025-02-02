@@ -84,7 +84,7 @@ Request:
 
 ## Next Queue Track
 
-Gets the next track in the queue. Plays the track if the player isn't playing. Response is a [track](https://lavalink.dev/api/rest#track) object.
+Gets the next track in the queue. Plays the next track if the player isn't playing. Response is a [track](https://lavalink.dev/api/rest#track) object.
 
 ```
 GET /v4/sessions/{sessionId}/players/{guildId}/queue/next
@@ -94,7 +94,7 @@ GET /v4/sessions/{sessionId}/players/{guildId}/queue/next
 
 ## Previous Queue Track
 
-Gets the previously playing track. Plays the track if the player isn't playing. Response is a [track](https://lavalink.dev/api/rest#track) object.
+Gets the previously playing track. Plays the previous track if the player isn't playing. Response is a [track](https://lavalink.dev/api/rest#track) object.
 
 ```
 GET /v4/sessions/{sessionId}/players/{guildId}/queue
