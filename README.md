@@ -38,7 +38,7 @@ Snapshot builds are available at https://maven.lavalink.dev/#/snapshots with the
 ### Get Queue
 
 ```
-GET /v4/sessions/{sessionId}/players/{guildId}/queue
+GET /sessions/{sessionId}/players/{guildId}/queue
 ```
 
 Response:
@@ -64,7 +64,7 @@ Response:
 Modifies the queue. Overrides the existing tracks if the tracks key is present.
 
 ```
-PATCH /v4/sessions/{sessionId}/players/{playerId}/queue
+PATCH /sessions/{sessionId}/players/{playerId}/queue
 ```
 
 Request:
@@ -87,7 +87,7 @@ Request:
 Gets the next track in the queue. Plays the next track if the player isn't playing. Response is a [track](https://lavalink.dev/api/rest#track) object.
 
 ```
-GET /v4/sessions/{sessionId}/players/{guildId}/queue/next
+GET /sessions/{sessionId}/players/{guildId}/queue/next
 ```
 
 ---
@@ -97,7 +97,7 @@ GET /v4/sessions/{sessionId}/players/{guildId}/queue/next
 Gets the previously playing track. Plays the previous track if the player isn't playing. Response is a [track](https://lavalink.dev/api/rest#track) object.
 
 ```
-GET /v4/sessions/{sessionId}/players/{guildId}/queue
+GET /sessions/{sessionId}/players/{guildId}/queue
 ```
 
 ---
@@ -107,7 +107,7 @@ GET /v4/sessions/{sessionId}/players/{guildId}/queue
 Adds tracks to the queue. Response is the next queue [track](https://lavalink.dev/api/rest#track).
 
 ```
-POST /v4/sessions/{sessionId}/players/{guildId}/queue/tracks
+POST /sessions/{sessionId}/players/{guildId}/queue/tracks
 ```
 
 Request:
@@ -129,7 +129,7 @@ Request:
 Overrides the existing tracks in the queue. Response is the next queue [track](https://lavalink.dev/api/rest#track).
 
 ```
-PUT /v4/sessions/{sessionId}/players/{guildId}/queue/tracks
+PUT /sessions/{sessionId}/players/{guildId}/queue/tracks
 ```
 
 Request:
@@ -149,7 +149,7 @@ Request:
 ### Delete Queue
 
 ```
-DELETE /v4/sessions/{sessionId}/players/{guildId}/tracks/queue
+DELETE /sessions/{sessionId}/players/{guildId}/tracks/queue
 ```
 
 ---
@@ -159,7 +159,7 @@ DELETE /v4/sessions/{sessionId}/players/{guildId}/tracks/queue
 Gets a track from the queue at the specified index. Response is a [track](https://lavalink.dev/api/rest#track) object.
 
 ```
-GET /v4/sessions/{sessionId}/players/{guildId}/queue/tracks/{index}
+GET /sessions/{sessionId}/players/{guildId}/queue/tracks/{index}
 ```
 
 ---
@@ -169,7 +169,7 @@ GET /v4/sessions/{sessionId}/players/{guildId}/queue/tracks/{index}
 Adds a track at the specified index. Reuqest body is an [update player track](https://lavalink.dev/api/rest#update-player-track).
 
 ```
-PUT /v4/sessions/{sessionId}/players/{guildId}/queue/tracks/{index}
+PUT /sessions/{sessionId}/players/{guildId}/queue/tracks/{index}
 ```
 
 ---
@@ -179,7 +179,7 @@ PUT /v4/sessions/{sessionId}/players/{guildId}/queue/tracks/{index}
 Deletes a track from the queue. If amount is provided, the specified number of elements after the index will be removed.
 
 ```
-DELETE /v4/sessions/{sessionId}/players/{guildId}/queue/{index}?amount=0
+DELETE /sessions/{sessionId}/players/{guildId}/queue/{index}?amount=0
 ```
 
 ---
@@ -189,7 +189,7 @@ DELETE /v4/sessions/{sessionId}/players/{guildId}/queue/{index}?amount=0
 Move a track to a different position. This does *not* remove the track at the original index.
 
 ```
-POST /v4/sessions/{sessionId}/players/{guildId}/queue/{index}/move?position=0
+POST /sessions/{sessionId}/players/{guildId}/queue/{index}/move?position=0
 ```
 
 ---
@@ -199,7 +199,7 @@ POST /v4/sessions/{sessionId}/players/{guildId}/queue/{index}/move?position=0
 Gets the history of this queue. Response is an array of [track](https://lavalink.dev/api/rest#track) objects.
 
 ```
-GET /v4/sessions/{sessionId}/players/{guildId}/history
+GET /sessions/{sessionId}/players/{guildId}/history
 ```
 
 ---
@@ -209,7 +209,7 @@ GET /v4/sessions/{sessionId}/players/{guildId}/history
 Gets a track from the history at the specified index. Response is a [track](https://lavalink.dev/api/rest#track) object.
 
 ```
-GET /v4/sessions/{sessionId}/players/{guildId}/history/{index}
+GET /sessions/{sessionId}/players/{guildId}/history/{index}
 ```
 
 ---
